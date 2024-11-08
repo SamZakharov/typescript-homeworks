@@ -13,8 +13,15 @@ const reverseArrayInPlace = <T>(arr: T[]): T[] => {
     return arr;
 }
 
-const reversed = reverseArrayInPlace(array)
+const reverseArrayInPlaceRecursive = <T>(arr: T[], left: number = 0, right: number = arr.length - 1): T[] => {
+    if (left >= right) return arr;
+    [arr[left], arr[right]] = [arr[right], arr[left]];
+    return reverseArrayInPlaceRecursive(arr, left + 1, right - 1);
+}
 
-console.log(reverseArrayInPlace(array));
-console.log(reversed === array);
+const reversedArr1 = reverseArrayInPlace(array)
+const reversedArr2 = reverseArrayInPlaceRecursive(array)
+
+console.log(reversedArr1 === array);
+console.log(reversedArr2 === array);
 
